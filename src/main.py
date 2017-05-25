@@ -84,7 +84,7 @@ for i in range(int(len(data2))):
         speedfile=Tsusedmod2(name2)
         result1[i,j,0,:]=speedfile[:,0]
         result1[i,j,1,:]=speedfile[:,1]
-        name3='result_'+'sample%02d'%i+'.txt'
+        name3=outp_path+'result_'+'sample%02d'%i+'.txt'
         fp=open(name3,'wb')
         fp.write("%s \n"%result[i,j,:])
     close()
@@ -96,7 +96,7 @@ fname1='Velocity Ditribution'
 xlabel("Location")
 ylabel("Veloctiy")
 legend([p1,p2],["Max Velocity","Average Velocity"],loc=3)
-savefig(fname1+' Sample%i.png'%i,dpi=100)
+savefig(outp_path+fname1+' Sample%i.png'%i,dpi=100)
 fg2=figure(2,figsize=(8,30))
 p3,=plot(x,result[:,0,2])
 p4,=plot(x,result[:,0,3])
@@ -105,4 +105,4 @@ title("Froude Number Ditribution")
 xlabel("Location")
 ylabel("Froude Number")
 legend([p3,p4],["Max Froude Number","Average Froude Number"],loc=4)
-savefig(fname2+' Sample%i.png'%i,dpi=100)
+savefig(outp_path+fname2+' Sample%i.png'%i,dpi=100)

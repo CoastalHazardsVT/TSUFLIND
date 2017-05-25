@@ -2653,7 +2653,7 @@ def Tsusedmod1(name):
     print('Avg. speed:%5.2f'%avgspeed+'m/s \n')
     print('Max. Froude:%4.2f'%MaxFroude+'\n')
     print('Avg. Froude:%4.2f'%AvgFroude+'\n')
-    fp=open('result.txt','wb')
+    fp=open(outp_path+'result.txt','wb')
     fp.write("Model stats \n")
     fp.write("datestr(now) \n")
     fp.write("iterations:")
