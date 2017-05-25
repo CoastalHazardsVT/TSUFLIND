@@ -1,19 +1,21 @@
 from pylab import *
-from function import *
-from output2CSV import *
-from concentration import *
-from Moore_model import *
-from RSEcalcu import *
-from thick_RSE import *
-from ReadCSV import *
-#from thickness import *
-from source_distribution import *
-from sousby_model import *
-from TsusedForm import *
-from TsusedMod import *
-from preproc import *
-from TsusedMod1 import *
-from TsusedMod2 import *
+# from function import *
+# from output2CSV import *
+# from concentration import *
+# from Moore_model import *
+# from RSEcalcu import *
+# from thick_RSE import *
+# from ReadCSV import *
+# #from thickness import *
+# from source_distribution import *
+# from sousby_model import *
+# from TsusedForm import *
+# from TsusedMod import *
+# from preproc import *
+# from TsusedMod1 import *
+# from TsusedMod2 import *
+from tools import *
+# from tools2 import *
 import csv
 import os
 import matplotlib.colors as colors
@@ -21,7 +23,7 @@ import matplotlib.cm as cmx
 import matplotlib.ticker as ticker
 separator=':'
 separator=':'
-with open('parameter_P14abc.txt','r') as f:
+with open('../input/parameter_P14abc.txt','r') as f:
     for line in f:
         try:
             s=line.split('=');n=s[0];v=s[1];#remove '\n'
@@ -38,7 +40,7 @@ with open('parameter_P14abc.txt','r') as f:
             elif n=='bed_roughness': zotot=float(v)
             elif n=='settling_velocity_type': setType=float(v)
             elif n=='eddy_viscosity_shape': var=float(v)
-            elif n=='salinity': sal=float(v)            
+            elif n=='salinity': sal=float(v)
             elif n=='water_temperature': wtemp=float(v)
             elif n=='sediment_density': Rhos=float(v)
             elif n=='bed_concentration': Cb=float(v)
@@ -55,7 +57,7 @@ with open('parameter_P14abc.txt','r') as f:
             elif n=='Filename': filename=str(v)
             elif n=='Depth': h=float(v)
             elif n=='Sediment_thickness': th=float(v)
-            elif n=='Thickness_file': th_file=str(v)
+            elif n=='Thickness_file': th_file='../input/'+str(v)
             elif n=='Filename_Sousby': filename_sousby=str(v)
             elif n=='layer_thickness': thb=float(v)
 
@@ -63,7 +65,7 @@ with open('parameter_P14abc.txt','r') as f:
 	    continue
 	except ValueError as e:
 	    continue
-para=preproc(filename)# preprocess data from field data document
+para=preproc('../input/'+filename)# preprocess data from field data document
 Dl=0.0
 Dm=2.6860
 Ds=4.0
@@ -119,4 +121,3 @@ xlabel("Location")
 ylabel("Froude Number")
 legend([p3,p4],["Max Froude Number","Average Froude Number"],loc=4)
 savefig(fname2+' Sample%i.png'%i,dpi=100)
-
