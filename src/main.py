@@ -23,6 +23,7 @@ import matplotlib.cm as cmx
 import matplotlib.ticker as ticker
 separator=':'
 separator=':'
+outp_path = '../output/'
 with open('../input/parameter_P14abc.txt','r') as f:
     for line in f:
         try:

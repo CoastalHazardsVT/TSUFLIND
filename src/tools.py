@@ -80,6 +80,7 @@ Input: 	        T = temperature [degree C (IPTS-68)][Array2]
 First version written March 12, 2001by Bruce Jaffe in matlab
 originate from Bruce Jaffe,USGS, Made into python by Hui Tang, Virginia Tech, tanghui@vt.edu
 '''
+outp_path = '../output/'
 from pylab import *
 from types import *
 import csv
@@ -831,7 +832,7 @@ def output2CSV(name,data1,data2,text1,text2):
     data=zeros([len(data1),2]);
     data[:,0]=data1; data[:,1]=data2;
     pb=progressBar(len(data1),'# Outputting to File['+name+']:',">"); n=0;
-    with open(name,'wt') as f:
+    with open(outp_path+name,'wt') as f:
         writer=csv.writer(f,delimiter=';')
         writer.writerow((text1,text2)) # write description
         for row in data: writer.writerow((row[0],row[1]));pb.progress(n+1);n+=1;
@@ -842,7 +843,7 @@ def output2CSV1(name,data1,data2,data3,data4,data5,text1,text2,text3,text4,text5
     data=zeros([len(data1),5]);
     data[:,0]=data1; data[:,1]=data2;data[:,2]=data3;data[:,3]=data4;data[:,4]=data5
     pb=progressBar(len(data1),'# Outputting to File['+name+']:',">"); n=0;
-    with open(name,'wt') as f:
+    with open(outp_path+name,'wt') as f:
         writer=csv.writer(f,delimiter=';')
         writer.writerow((text1,text2,text3,text4,text5)) # write description
         for row in data: writer.writerow((row[0],row[1],row[2],row[3],row[4]));pb.progress(n+1);n+=1;
@@ -1017,7 +1018,7 @@ def readCSV(name,separator=';'):
 #writed by Hui Tang,Virginia Tech, Jan 31, 2013 tanghui@vt.edu
 def readCSV1(name,separator=';'):
     data=zeros([1,5]); start=True # initialize data array
-    with open(name,'rU') as f:
+    with open(outp_path+name,'rU') as f:
         reader = csv.reader(f) # read CSV file
         for row in reader: # read each line and store them into a n by 2 array
             try: rs=row[0].split(separator); d1=float(rs[0]); d2=float(rs[1]);d3=float(rs[2]);d4=float(rs[3]);d5=float(rs[4])
@@ -1963,7 +1964,7 @@ def Tsusedmod(name):
             except ValueError as e:
                 continue
     filename=name
-    data=readCSV1(filename,separator=';')
+    data=readCSV1(outp_path+filename,separator=';')
     phi=data[:,0]
     fr1=data[:,1]
     fr=zeros(shape=(len(fr1),1))
